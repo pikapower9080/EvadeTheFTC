@@ -87,9 +87,13 @@ func _on_jimmy_area_entered(area):
 	match area.type:
 		"TURBOTAX":
 			play_sound(random_from(sounds_collect))
+			_g.money += 1000000000
+			$Control/Money.text = "Money: " + _g.comma_sep(_g.money)
 			area.queue_free()
 		"FTC":
 			play_sound(random_from(sounds_hit))
+			_g.money -= 2000000000
+			$Control/Money.text = "Money: " + _g.comma_sep(_g.money)
 			area.queue_free()
 
 func _on_story_ok_button_pressed():

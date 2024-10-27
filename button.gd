@@ -17,7 +17,7 @@ func _on_pressed():
 	tween.tween_property(Title, "position", Vector2(Title.position.x, -Title.size.y), 1.5).set_trans(Tween.TRANS_QUINT)
 	tween.parallel().tween_property(Deluxe, "scale", Vector2(0, 0), 1.5).set_trans(Tween.TRANS_BOUNCE)
 	tween.tween_property(self, "position", Vector2(position.x, 800 + size.y), 1).set_trans(Tween.TRANS_BACK)
-	tween.tween_property(_g, "game_speed", 60, 1.8)
+	tween.tween_property(_g, "game_speed", 85, 1.8)
 	tween.parallel().tween_property(Jimmy, "position", Vector2(Jimmy.position.x, 530), 1.8)
 	tween.tween_callback(func():
 		Deluxe.queue_free()
