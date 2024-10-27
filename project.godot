@@ -14,7 +14,7 @@ config/name="Evade the FTC"
 run/main_scene="res://title_screen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=60
-config/icon="res://icon.svg"
+config/icon="res://Sprites/evadeftc.png"
 
 [autoload]
 
