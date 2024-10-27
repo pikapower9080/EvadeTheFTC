@@ -26,7 +26,7 @@ border_color = Color(0, 0, 0, 1)
 
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
-Button/font_sizes/font_size = 25
+Button/font_sizes/font_size = 50
 Button/styles/focus = SubResource("StyleBoxFlat_wboxt")
 Button/styles/hover = SubResource("StyleBoxFlat_wboxt")
 Button/styles/normal = SubResource("StyleBoxFlat_r0swm")

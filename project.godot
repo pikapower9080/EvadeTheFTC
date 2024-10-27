@@ -22,10 +22,10 @@ _g="*res://global.gd"
 
 [display]
 
-window/size/viewport_width=400
-window/size/viewport_height=400
-window/size/window_width_override=800
-window/size/window_height_override=800
+window/size/viewport_width=800
+window/size/viewport_height=800
+window/size/window_width_override=1200
+window/size/window_height_override=1200
 window/stretch/mode="canvas_items"
 
 [input]

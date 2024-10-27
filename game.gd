@@ -6,8 +6,8 @@ extends Node2D
 var ftc = preload("res://ftc.tscn")
 var turbotax = preload("res://turbotax.tscn")
 
-var jump_power = 130
-var gravity = 150
+var jump_power = 260
+var gravity = 300
 
 var sounds_welcome = [load("res://Sounds/character_jimmy_howdy_how_ya_doin_1.mp3"), load("res://Sounds/character_jimmy_greetings_friend_1.mp3")]
 var sounds_jump = [load("res://Sounds/character_jimmy_jump_2.mp3"), load("res://Sounds/character_jimmy_woah_1.mp3")]
@@ -41,12 +41,12 @@ func random_from(array):
 
 func spawn_enemy():
 	var enemy = ftc.instantiate()
-	enemy.position = Vector2(760, 285)
+	enemy.position = Vector2(760, 569)
 	add_child(enemy)
 
 func spawn_pickup():
 	var pickup = turbotax.instantiate()
-	pickup.position = Vector2(880, randi_range(100, 200))
+	pickup.position = Vector2(880, randi_range(200, 400))
 	add_child(pickup)
 
 func start_game():
@@ -79,8 +79,8 @@ func _process(delta):
 			Jimmy.position -= Vector2(0, jump_power * delta)
 		FALLING:
 			Jimmy.position += Vector2(0, gravity * delta)
-			if (Jimmy.position.y >= 0):
-				Jimmy.position = Vector2(Jimmy.position.x, 0)
+			if (Jimmy.position.y >= 530):
+				Jimmy.position = Vector2(Jimmy.position.x, 530)
 				state = RUNNING
 
 func _on_jimmy_area_entered(area):
@@ -94,7 +94,7 @@ func _on_jimmy_area_entered(area):
 
 func _on_story_ok_button_pressed():
 	if (introState == STORY):
-		$Control/Story/RichTextLabel.text = "Jump over the FTC logo to avoid taking responsibility for your actions.\n\nYou'll also want to collect the TurboTax™ logos to lobby the government for regulation that favors your dystopian ideal of American society."
+		$Control/Story/RichTextLabel.text = "Jump over the FTC logo to avoid taking responsibility for your actions.\n\nYou'll also want to collect customer's credit cards which will help you lobby the government for regulation that favors your dystopian ideal of American society."
 		$Control/Story/StoryOkButton.text = "Let's go!"
 		introState = TUTORIAL
 	else:

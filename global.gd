@@ -1,3 +1,4 @@
 extends Node
 
-var game_speed:int = 50
+var game_speed:int = 30
+var money = 15090000000

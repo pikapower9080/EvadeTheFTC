@@ -4,14 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://dqb8n72apdi2y" path="res://Sprites/ftc.png" id="1_wqqis"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1xf06"]
-radius = 37.0135
+radius = 73.0274
 
 [node name="FTC" type="Area2D"]
 script = ExtResource("1_wp736")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1.90735e-06, 1.90735e-06)
-scale = Vector2(0.223611, 0.223611)
+scale = Vector2(0.448, 0.448)
 texture = ExtResource("1_wqqis")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

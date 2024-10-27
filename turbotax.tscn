@@ -1,21 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://brgguncfukr13"]
 
-[ext_resource type="Texture2D" uid="uid://c0cm82phusfqg" path="res://Sprites/turbotax.png" id="1_0d3xh"]
 [ext_resource type="Script" path="res://turbotax.gd" id="1_dc4o1"]
+[ext_resource type="Texture2D" uid="uid://bwxhupimg8d31" path="res://Sprites/creditcard.png" id="2_ny5lb"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uk0jw"]
-radius = 22.0
-height = 66.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7x4i"]
+size = Vector2(91.9994, 164)
 
 [node name="Turbotax" type="Area2D"]
 script = ExtResource("1_dc4o1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(7.62939e-06, 3.8147e-06)
-scale = Vector2(0.108333, 0.108333)
-texture = ExtResource("1_0d3xh")
+scale = Vector2(0.216, 0.216)
+texture = ExtResource("2_ny5lb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_uk0jw")
+shape = SubResource("RectangleShape2D_a7x4i")

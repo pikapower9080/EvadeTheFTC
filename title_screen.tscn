@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://c47yeh7h3pvl5"]
+[gd_scene load_steps=17 format=3 uid="uid://c47yeh7h3pvl5"]
 
 [ext_resource type="PackedScene" uid="uid://dmc3p4lfp3mk1" path="res://background.tscn" id="1_oqb56"]
 [ext_resource type="Script" path="res://game.gd" id="1_qy6eo"]
 [ext_resource type="FontFile" uid="uid://dhkcul3dagkwc" path="res://Fonts/ShantellSans-Regular.ttf" id="2_usvm6"]
+[ext_resource type="Texture2D" uid="uid://dic2exqi8rh7s" path="res://Sprites/background2x.png" id="3_8dmbj"]
 [ext_resource type="FontFile" uid="uid://c6a8lfv0f6o5w" path="res://Fonts/Galindo-Regular.ttf" id="3_hsbpx"]
 [ext_resource type="Script" path="res://button.gd" id="4_gar1b"]
 [ext_resource type="Theme" uid="uid://c1k4f0dyajhp4" path="res://main_theme.tres" id="5_8q0r6"]
@@ -10,7 +11,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_ysfmr"]
 font = ExtResource("3_hsbpx")
-font_size = 21
+font_size = 36
 font_color = Color(1, 0.203922, 0.207843, 1)
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
@@ -19,42 +20,6 @@ shadow_color = Color(0, 0, 0, 0.239216)
 
 [sub_resource type="Animation" id="Animation_6xy25"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(240, 108)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.202458]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_ljrii"]
 resource_name = "breathe"
@@ -109,16 +74,21 @@ _data = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_1l2dn"]
 font = ExtResource("2_usvm6")
-font_size = 23
+font_size = 41
 font_color = Color(1, 1, 0, 1)
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 0.27451)
 
+[sub_resource type="LabelSettings" id="LabelSettings_0qtee"]
+font = ExtResource("2_usvm6")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eq7d4"]
-radius = 12.0
-height = 106.0
+radius = 22.0
+height = 206.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qy6eo")
@@ -126,20 +96,23 @@ script = ExtResource("1_qy6eo")
 [node name="Audio" type="Node" parent="."]
 
 [node name="Background" parent="." instance=ExtResource("1_oqb56")]
+offset_right = 1600.0
+offset_bottom = 800.0
+texture = ExtResource("3_8dmbj")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 400.0
-offset_bottom = 400.0
+offset_right = 800.0
+offset_bottom = 800.0
 
 [node name="Deluxe" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 240.0
-offset_top = 108.0
-offset_right = 388.0
-offset_bottom = 139.0
-rotation = -0.202458
+offset_left = 518.0
+offset_top = 145.0
+offset_right = 772.0
+offset_bottom = 197.0
+rotation = -0.270526
 pivot_offset = Vector2(74, 15)
 text = "Extra Deluxe!"
 label_settings = SubResource("LabelSettings_ysfmr")
@@ -171,10 +144,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -69.0
-offset_top = -18.5
-offset_right = 69.0
-offset_bottom = 18.5
+offset_left = -138.0
+offset_top = -37.0
+offset_right = 138.0
+offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -229,16 +202,24 @@ grow_vertical = 0
 theme = ExtResource("5_8q0r6")
 text = "Next"
 
+[node name="Money" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 183.0
+offset_bottom = 31.0
+text = "Money: 15,090,000,000"
+label_settings = SubResource("LabelSettings_0qtee")
+
 [node name="Jimmy" type="Area2D" parent="."]
-position = Vector2(0, -328)
+position = Vector2(87, -120)
+metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Jimmy"]
-position = Vector2(44.25, 265.429)
-scale = Vector2(0.297619, 0.297619)
+scale = Vector2(0.596, 0.596)
 texture = ExtResource("5_sxlop")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jimmy"]
-position = Vector2(44, 263)
 shape = SubResource("CapsuleShape2D_eq7d4")
 
 [connection signal="game_started" from="Control/Button" to="." method="_on_button_game_started"]
