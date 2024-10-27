@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch0lw1d7oxguj"]
+
+[ext_resource type="Script" path="res://ftc.gd" id="1_wp736"]
+[ext_resource type="Texture2D" uid="uid://dqb8n72apdi2y" path="res://Sprites/ftc.png" id="1_wqqis"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1xf06"]
+radius = 37.0135
+
+[node name="FTC" type="Area2D"]
+script = ExtResource("1_wp736")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(0.223611, 0.223611)
+texture = ExtResource("1_wqqis")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1xf06")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmc3p4lfp3mk1"]
+
+[ext_resource type="Texture2D" uid="uid://dj05grlejo1v1" path="res://Sprites/background.png" id="1_xm3vl"]
+[ext_resource type="Script" path="res://background.gd" id="2_qvrxw"]
+
+[node name="Background" type="TextureRect"]
+offset_right = 800.0
+offset_bottom = 400.0
+texture = ExtResource("1_xm3vl")
+stretch_mode = 1
+script = ExtResource("2_qvrxw")

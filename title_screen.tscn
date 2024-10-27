@@ -1,0 +1,247 @@
+[gd_scene load_steps=15 format=3 uid="uid://c47yeh7h3pvl5"]
+
+[ext_resource type="PackedScene" uid="uid://dmc3p4lfp3mk1" path="res://background.tscn" id="1_oqb56"]
+[ext_resource type="Script" path="res://game.gd" id="1_qy6eo"]
+[ext_resource type="FontFile" uid="uid://dhkcul3dagkwc" path="res://Fonts/ShantellSans-Regular.ttf" id="2_usvm6"]
+[ext_resource type="FontFile" uid="uid://c6a8lfv0f6o5w" path="res://Fonts/Galindo-Regular.ttf" id="3_hsbpx"]
+[ext_resource type="Script" path="res://button.gd" id="4_gar1b"]
+[ext_resource type="Theme" uid="uid://c1k4f0dyajhp4" path="res://main_theme.tres" id="5_8q0r6"]
+[ext_resource type="Texture2D" uid="uid://b1ijd0u63mob1" path="res://Sprites/jimmy.png" id="5_sxlop"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ysfmr"]
+font = ExtResource("3_hsbpx")
+font_size = 21
+font_color = Color(1, 0.203922, 0.207843, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.239216)
+
+[sub_resource type="Animation" id="Animation_6xy25"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(240, 108)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.202458]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ljrii"]
+resource_name = "breathe"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mlao4"]
+resource_name = "enter"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 20),
+"update": 0,
+"values": [Vector2(-179, 145), Vector2(246, 98)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 20),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_818vq"]
+_data = {
+"RESET": SubResource("Animation_6xy25"),
+"breathe": SubResource("Animation_ljrii"),
+"enter": SubResource("Animation_mlao4")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_1l2dn"]
+font = ExtResource("2_usvm6")
+font_size = 23
+font_color = Color(1, 1, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.27451)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eq7d4"]
+radius = 12.0
+height = 106.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_qy6eo")
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Background" parent="." instance=ExtResource("1_oqb56")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 400.0
+
+[node name="Deluxe" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 108.0
+offset_right = 388.0
+offset_bottom = 139.0
+rotation = -0.202458
+pivot_offset = Vector2(74, 15)
+text = "Extra Deluxe!"
+label_settings = SubResource("LabelSettings_ysfmr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Deluxe"]
+libraries = {
+"": SubResource("AnimationLibrary_818vq")
+}
+autoplay = "breathe"
+
+[node name="Title" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -184.0
+offset_top = 41.0
+offset_right = 184.0
+offset_bottom = 108.0
+grow_horizontal = 2
+text = "lobby the government while also
+evading the FTC simulator™"
+label_settings = SubResource("LabelSettings_1l2dn")
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -18.5
+offset_right = 69.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_8q0r6")
+text = "Play"
+script = ExtResource("4_gar1b")
+
+[node name="Story" type="ColorRect" parent="Control"]
+visible = false
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.051971, 0.051971, 0.051971, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/Story"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.5
+offset_top = -189.5
+offset_right = 189.5
+offset_bottom = 189.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 18
+text = "You're a new intern at the TurboTax™ division of the Intuit corporation.
+
+The pesky government thinks your business practices are illegal, and the IRS thinks that tax filing should be simple and free, rediculous!
+
+Your job is to help Intuit make the lives of millions of Americans harder by forcing them to pay large sums of money for your tax filing software. Careful though, the FTC is after you!"
+
+[node name="StoryOkButton" type="Button" parent="Control/Story"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.5
+offset_top = -47.0
+offset_right = 58.5
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("5_8q0r6")
+text = "Next"
+
+[node name="Jimmy" type="Area2D" parent="."]
+position = Vector2(0, -328)
+
+[node name="Sprite" type="Sprite2D" parent="Jimmy"]
+position = Vector2(44.25, 265.429)
+scale = Vector2(0.297619, 0.297619)
+texture = ExtResource("5_sxlop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jimmy"]
+position = Vector2(44, 263)
+shape = SubResource("CapsuleShape2D_eq7d4")
+
+[connection signal="game_started" from="Control/Button" to="." method="_on_button_game_started"]
+[connection signal="pressed" from="Control/Button" to="Control/Button" method="_on_pressed"]
+[connection signal="pressed" from="Control/Story/StoryOkButton" to="." method="_on_story_ok_button_pressed"]
+[connection signal="area_entered" from="Jimmy" to="." method="_on_jimmy_area_entered"]

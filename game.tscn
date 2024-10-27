@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlghmwalu8hkj"]
+
+[ext_resource type="PackedScene" uid="uid://dmc3p4lfp3mk1" path="res://background.tscn" id="1_q3xde"]
+[ext_resource type="PackedScene" uid="uid://ch0lw1d7oxguj" path="res://ftc.tscn" id="4_m6tim"]
+[ext_resource type="PackedScene" uid="uid://brgguncfukr13" path="res://turbotax.tscn" id="5_gayyc"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_q3xde")]
+
+[node name="Turbotax" parent="." instance=ExtResource("5_gayyc")]
+position = Vector2(135, 127)
+
+[node name="FTC" parent="." instance=ExtResource("4_m6tim")]
+position = Vector2(162, 285)
