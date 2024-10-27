@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var Jimmy = $Jimmy
-@onready var AudioManager = $Audio
 
 var ftc = preload("res://ftc.tscn")
 var turbotax = preload("res://turbotax.tscn")
@@ -14,6 +13,7 @@ var sounds_jump = [load("res://Sounds/character_jimmy_jump_2.mp3"), load("res://
 var sounds_collect = [load("res://Sounds/character_jimmy_awesome_1.mp3"), load("res://Sounds/character_jimmy_i_like_cheese_1.mp3"), load("res://Sounds/character_jimmy_i_like_cheese_2.mp3")]
 var sounds_hit = [load("res://Sounds/character_jimmy_no_2.mp3"), load("res://Sounds/character_jimmy_what_1.mp3")]
 var sound_gameover = load("res://Sounds/Spongebob-Fail-Sound-Effect-.mp3")
+var sound_okska = load("res://Sounds/okska.mp3")
 
 enum {
 	IDLE,
@@ -29,29 +29,23 @@ enum {
 var state = IDLE
 var introState = STORY
 
-func play_sound(resource):
-	var audio = AudioStreamPlayer.new()
-	audio.stream = resource
-	AudioManager.add_child(audio)
-	audio.play()
-	audio.connect("finished", audio.queue_free)
 
 func random_from(array):
 	return array[randi_range(0, array.size() - 1)]
 
 func spawn_enemy():
 	var enemy = ftc.instantiate()
-	enemy.position = Vector2(760, 569)
+	enemy.position = Vector2(900, 569)
 	add_child(enemy)
 
 func spawn_pickup():
 	var pickup = turbotax.instantiate()
-	pickup.position = Vector2(880, randi_range(200, 400))
+	pickup.position = Vector2(900, randi_range(200, 400))
 	add_child(pickup)
 
 func start_game():
 	print("Game started")
-	play_sound(sounds_welcome[randi_range(0, sounds_welcome.size() - 1)])
+	_g.play_sound(sounds_welcome[randi_range(0, sounds_welcome.size() - 1)])
 	state = RUNNING
 	spawn_pickup()
 	await get_tree().create_timer(randi_range(4, 5)).timeout
@@ -71,7 +65,7 @@ func _on_button_game_started():
 func _process(delta):
 	if (Input.is_action_just_pressed("jump") and state == RUNNING):
 		state = JUMPING
-		play_sound(sounds_jump[randi_range(0, sounds_jump.size() - 1)])
+		_g.play_sound(sounds_jump[randi_range(0, sounds_jump.size() - 1)])
 		await get_tree().create_timer(1.3, false).timeout
 		state = FALLING
 	match state:
@@ -86,12 +80,12 @@ func _process(delta):
 func _on_jimmy_area_entered(area):
 	match area.type:
 		"TURBOTAX":
-			play_sound(random_from(sounds_collect))
+			_g.play_sound(random_from(sounds_collect))
 			_g.money += 1000000000
 			$Control/Money.text = "Money: " + _g.comma_sep(_g.money)
 			area.queue_free()
 		"FTC":
-			play_sound(random_from(sounds_hit))
+			_g.play_sound(random_from(sounds_hit))
 			_g.money -= 2000000000
 			$Control/Money.text = "Money: " + _g.comma_sep(_g.money)
 			area.queue_free()
@@ -102,5 +96,13 @@ func _on_story_ok_button_pressed():
 		$Control/Story/StoryOkButton.text = "Let's go!"
 		introState = TUTORIAL
 	else:
-		$Control/Story.queue_free()
-		start_game()
+		$Control/Money.visible = true
+		_g.play_sound(sound_okska)
+		var tween = create_tween()
+		tween.tween_property($Control/Story, "position", Vector2(0, 800), 1)
+		tween.parallel().tween_property($StoryMusic, "volume_db", -45, 1)
+		tween.tween_callback(func():
+			$StoryMusic.playing = false
+			$Control/Story.queue_free()
+			start_game()
+			)
