@@ -13,10 +13,12 @@ signal game_started
 var started = false
 var sound_stone_slide = [load("res://Sounds/stone-sliding.wav"), load("res://Sounds/stone-sliding-2.wav")]
 var sound_slip = load("res://Sounds/cartoon-slipping.mp3")
+var sound_button = load("res://Sounds/select.wav")
 
 func _on_pressed():
 	if (started): return
 	started = true
+	_g.play_sound(sound_button, -5)
 	Deluxe.get_node("AnimationPlayer").active = false
 	var tween = create_tween()
 	tween.tween_property(Title, "position", Vector2(Title.position.x, -Title.size.y), 1.5).set_trans(Tween.TRANS_QUINT)

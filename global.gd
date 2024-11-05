@@ -13,9 +13,10 @@ func comma_sep(number):
 		res += string[i]
 	return res
 
-func play_sound(resource):
+func play_sound(resource, volumeDB=0):
 	var audio = AudioStreamPlayer.new()
 	audio.stream = resource
+	audio.volume_db = volumeDB
 	add_child(audio)
 	audio.play()
 	audio.connect("finished", audio.queue_free)

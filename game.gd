@@ -14,6 +14,7 @@ var sounds_collect = [load("res://Sounds/character_jimmy_awesome_1.mp3"), load("
 var sounds_hit = [load("res://Sounds/character_jimmy_no_2.mp3"), load("res://Sounds/character_jimmy_what_1.mp3")]
 var sound_gameover = load("res://Sounds/Spongebob-Fail-Sound-Effect-.mp3")
 var sound_okska = load("res://Sounds/okska.mp3")
+var sound_select = load("res://Sounds/select.wav")
 
 enum {
 	IDLE,
@@ -95,6 +96,7 @@ func _on_story_ok_button_pressed():
 		$Control/Story/RichTextLabel.text = "Jump over the FTC logo to avoid taking responsibility for your actions.\n\nYou'll also want to collect customer's credit cards which will help you lobby the government for regulation that favors your dystopian ideal of American society."
 		$Control/Story/StoryOkButton.text = "Let's go!"
 		introState = TUTORIAL
+		_g.play_sound(sound_select, -5)
 	else:
 		$Control/Money.visible = true
 		_g.play_sound(sound_okska)
