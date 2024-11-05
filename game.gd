@@ -5,8 +5,8 @@ extends Node2D
 var ftc = preload("res://ftc.tscn")
 var turbotax = preload("res://turbotax.tscn")
 
-var jump_power = 260
-var gravity = 300
+var jump_power = 300
+var gravity = 280
 
 var sounds_welcome = [load("res://Sounds/character_jimmy_howdy_how_ya_doin_1.mp3"), load("res://Sounds/character_jimmy_greetings_friend_1.mp3")]
 var sounds_jump = [load("res://Sounds/character_jimmy_jump_2.mp3"), load("res://Sounds/character_jimmy_woah_1.mp3")]
@@ -81,12 +81,12 @@ func _on_jimmy_area_entered(area):
 	match area.type:
 		"TURBOTAX":
 			_g.play_sound(random_from(sounds_collect))
-			_g.money += 1000000000
+			_g.money += 1000000000 + randi_range(0, 100000000)
 			$Control/Money.text = "Money: " + _g.comma_sep(_g.money)
 			area.queue_free()
 		"FTC":
 			_g.play_sound(random_from(sounds_hit))
-			_g.money -= 2000000000
+			_g.money -= 2000000000 + randi_range(0, 100000000)
 			$Control/Money.text = "Money: " + _g.comma_sep(_g.money)
 			area.queue_free()
 

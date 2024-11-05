@@ -22,7 +22,7 @@ func _on_pressed():
 	tween.tween_property(Title, "position", Vector2(Title.position.x, -Title.size.y), 1.5).set_trans(Tween.TRANS_QUINT)
 	tween.parallel().tween_property(Deluxe, "scale", Vector2(0, 0), 1.5).set_trans(Tween.TRANS_BOUNCE)
 	tween.tween_property(self, "position", Vector2(position.x, 800 + size.y), 2.21).set_trans(Tween.TRANS_BACK)
-	tween.tween_property(_g, "game_speed", 85, 1.8)
+	tween.tween_property(_g, "game_speed", 100, 1.8)
 	tween.parallel().tween_property(MenuMusic, "volume_db", -45, 1)
 	tween.parallel().tween_property(Jimmy, "position", Vector2(Jimmy.position.x, 530), 1.305)
 	tween.parallel().tween_callback(func():

@@ -205,6 +205,7 @@ text = "Next"
 
 [node name="Money" type="Label" parent="Control"]
 visible = false
+top_level = true
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0

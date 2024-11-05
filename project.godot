@@ -11,9 +11,12 @@ config_version=5
 [application]
 
 config/name="Evade the FTC"
+config/version="1.0"
 run/main_scene="res://title_screen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=60
+boot_splash/show_image=false
+boot_splash/image="res://Sprites/evadeftc.png"
 config/icon="res://Sprites/evadeftc.png"
 
 [autoload]
@@ -42,3 +45,4 @@ jump={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
